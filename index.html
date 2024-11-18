@@ -56,7 +56,7 @@ int main() { <button class="explain-button" onclick="explainSection('mainStart')
     }
 
     // Initialize the first process start time and calculate completion time, turnaround time, and waiting time
-    int currentTime =  0; // to track the current time of execution
+    int currentTime =  0; // to track the current time of execution <button class="explain-button" onclick="explainSection('currentTimeInit')">Explain</button>
     for (int i = 0; i < numProcesses; ++i) { <button class="explain-button" onclick="explainSection('forLoopCalc')">Explain</button>
         int startTime = max(currentTime, processes[i].arrivalTime); <button class="explain-button" onclick="explainSection('startTimeCalc')">Explain</button>
         processes[i].completionTime = startTime + processes[i].burstTime; <button class="explain-button" onclick="explainSection('completionTimeCalc')">Explain</button>
@@ -92,9 +92,9 @@ int main() { <button class="explain-button" onclick="explainSection('mainStart')
     for (const auto& p : processes) { <button class="explain-button" onclick="explainSection('forLoopGanttChart')">Explain</button>
         cout << "-------"; <button class="explain-button" onclick="explainSection('coutGanttChartSeparator')">Explain</button>
     }
-    cout << "\n|"; <button class="explain-button" onclick="explainSection('coutGanttChartStart')">Explain</button>
-    for ( ```html
-const auto& p : processes) { <button class="explain-button" onclick="explainSection('forLoopGanttChartIds')">Explain</button>
+    cout << "\n|"; <button class="explain ```html
+-button" onclick="explainSection('coutGanttChartStart')">Explain</button>
+    for (const auto& p : processes) { <button class="explain-button" onclick="explainSection('forLoopGanttChartIds')">Explain</button>
         cout << "  P" << p.id << "   |"; <button class="explain-button" onclick="explainSection('coutGanttChartId')">Explain</button>
     }
     cout << "\n "; <button class="explain-button" onclick="explainSection('coutGanttChartSpaceEnd')">Explain</button>
@@ -104,12 +104,12 @@ const auto& p : processes) { <button class="explain-button" onclick="explainSect
     cout << "\n"; <button class="explain-button" onclick="explainSection('coutGanttChartNewline')">Explain</button>
 
     // Print completion times below the Gantt chart
-    currentTime = 0;  // Reset current time to print the completion times
+    currentTime = 0;  // Reset current time to print the completion times <button class="explain-button" onclick="explainSection('resetCurrentTime')">Explain</button>
     for (const auto& p : processes) { <button class="explain-button" onclick="explainSection('forLoopGanttChartTimes')">Explain</button>
         cout << currentTime << "\t"; <button class="explain-button" onclick="explainSection('coutGanttChartStartTime')">Explain</button>
-        currentTime = p.completionTime; <button class="explain-button" onclick="explainSection('updateCurrentTimeGantt')">Explain</button>
+        currentTime = p.completionTime; <button class="explain-button" onclick="explainSection('updateCurrentTimePrint')">Explain</button>
     }
-    cout << endl;  // Print the final completion time
+    cout << endl;  // Print the final completion time <button class="explain-button" onclick="explainSection('coutFinalCompletionTime')">Explain</button>
 
     return 0; <button class="explain-button" onclick="explainSection('return0')">Explain</button>
 }
@@ -118,7 +118,7 @@ const auto& p : processes) { <button class="explain-button" onclick="explainSect
 
         <div class="summary-report">
             <h2>Summary Report</h2>
-            <p>This C++ program is designed to manage and schedule processes based on user input. It collects information about each process, including its arrival time and burst time, and calculates various metrics such as completion time, waiting time, and turnaround time. The program then displays this information in a structured format, including a Gantt chart that visually represents the execution order of the processes. This helps users understand how processes are scheduled and managed in a computing environment, making it a valuable educational tool for learning about process scheduling algorithms.</p>
+            <p>This updated C++ program is designed to manage and schedule processes based on user input. It collects information about each process, including its arrival time and burst time, and calculates various metrics such as completion time, waiting time, and turnaround time. The program then displays this information in a structured format, including a Gantt chart that visually represents the execution order of the processes. This helps users understand how processes are scheduled and managed in a computing environment, making it a valuable educational tool for learning about process scheduling algorithms.</p>
         </div>
 
         <div class="export-section">
