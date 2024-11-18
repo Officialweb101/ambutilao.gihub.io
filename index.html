@@ -56,8 +56,8 @@ int main() { <button class="explain-button" onclick="explainSection('mainStart')
     }
 
     // Initialize the first process start time and calculate completion time, turnaround time, and waiting time
-    int currentTime = 0; // to track the current time of execution
-    for (int i = 0; i < num Processes; ++i) { <button class="explain-button" onclick="explainSection('forLoopCalc')">Explain</button>
+    int currentTime =  0; // to track the current time of execution
+    for (int i = 0; i < numProcesses; ++i) { <button class="explain-button" onclick="explainSection('forLoopCalc')">Explain</button>
         int startTime = max(currentTime, processes[i].arrivalTime); <button class="explain-button" onclick="explainSection('startTimeCalc')">Explain</button>
         processes[i].completionTime = startTime + processes[i].burstTime; <button class="explain-button" onclick="explainSection('completionTimeCalc')">Explain</button>
         processes[i].turnaroundTime = processes[i].completionTime - processes[i].arrivalTime; <button class="explain-button" onclick="explainSection('turnaroundTimeCalc')">Explain</button>
@@ -93,7 +93,8 @@ int main() { <button class="explain-button" onclick="explainSection('mainStart')
         cout << "-------"; <button class="explain-button" onclick="explainSection('coutGanttChartSeparator')">Explain</button>
     }
     cout << "\n|"; <button class="explain-button" onclick="explainSection('coutGanttChartStart')">Explain</button>
-    for (const auto& p : processes) { <button class="explain-button" onclick="explainSection('for LoopGanttChartIds')">Explain</button>
+    for ( ```html
+const auto& p : processes) { <button class="explain-button" onclick="explainSection('forLoopGanttChartIds')">Explain</button>
         cout << "  P" << p.id << "   |"; <button class="explain-button" onclick="explainSection('coutGanttChartId')">Explain</button>
     }
     cout << "\n "; <button class="explain-button" onclick="explainSection('coutGanttChartSpaceEnd')">Explain</button>
