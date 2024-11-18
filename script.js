@@ -16,8 +16,7 @@ const explanations = {
     coutNumProcesses: "This line prompts the user to enter the number of processes.",
     cinNumProcesses: "This line reads the number of processes entered by the user.",
     vectorProcesses: "This line creates a vector of Process structures to hold the information for each process.",
-    forLoopInput ```javascript
-: "This line starts a loop to get the arrival and burst times for each process from the user.",
+    forLoopInput: "This line starts a loop to get the arrival and burst times for each process from the user.",
     processId: "This line assigns a unique ID to each process.",
     coutProcessId: "This line prints the process ID.",
     coutArrivalTime: "This line prompts the user to enter the arrival time for the current process.",
