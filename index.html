@@ -25,6 +25,7 @@
 #include <iostream> <button class="explain-button" onclick="explainSection('includes1')">Explain</button>
 #include <vector> <button class="explain-button" onclick="explainSection('includes2')">Explain</button>
 #include <iomanip> <button class="explain-button" onclick="explainSection('includes3')">Explain</button>
+#include <algorithm>  // for max() <button class="explain-button" onclick="explainSection('includes4')">Explain</button>
 using namespace std; <button class="explain-button" onclick="explainSection('namespace')">Explain</button>
 
 // Structure to hold process information
@@ -32,8 +33,7 @@ struct Process { <button class="explain-button" onclick="explainSection('struct'
     int id; <button class="explain-button" onclick="explainSection('id')">Explain</button>
     int arrivalTime; <button class="explain-button" onclick="explainSection('arrivalTime')">Explain</button>
     int burstTime; <button class="explain-button" onclick="explainSection('burstTime')">Explain</button>
-    int startTime; <button class="explain-button" onclick="explainSection('startTime')">Explain</button>
-    int endTime; <button class="explain-button" onclick="explainSection('endTime')">Explain</button>
+    int completionTime; <button class="explain-button" onclick="explainSection('completionTime')">Explain</button>
     int waitingTime; <button class="explain-button" onclick="explainSection('waitingTime')">Explain</button>
     int turnaroundTime; <button class="explain-button" onclick="explainSection('turnaroundTime')">Explain</button>
 };
@@ -52,35 +52,32 @@ int main() { <button class="explain-button" onclick="explainSection('mainStart')
         cout << "  Enter arrival time: "; <button class="explain-button" onclick="explainSection('coutArrivalTime')">Explain</button>
         cin >> processes[i].arrivalTime; <button class="explain-button" onclick="explainSection('cinArrivalTime')">Explain</button>
         cout << "  Enter burst time: "; <button class="explain-button" onclick="explainSection('coutBurstTime')">Explain</button>
-        cin >> processes[i].burstTime; <button class="explain-button" onclick="explainSection('cinBurstTime')">Explain</ ```html
-        cout << "  Enter burst time: "; <button class="explain-button" onclick="explainSection('coutBurstTime')">Explain</button>
         cin >> processes[i].burstTime; <button class="explain-button" onclick="explainSection('cinBurstTime')">Explain</button>
     }
 
-    // Calculating start times, waiting times, turnaround times, and end times
-    for (int i = 0; i < numProcesses; ++i) { <button class="explain-button" onclick="explainSection('forLoopCalc')">Explain</button>
-        if (i == 0) { <button class="explain-button" onclick="explainSection('ifFirstProcess')">Explain</button>
-            processes[i].startTime = processes[i].arrivalTime; <button class="explain-button" onclick="explainSection('startTimeFirst')">Explain</button>
-        } else { <button class="explain-button" onclick="explainSection('elseOtherProcesses')">Explain</button>
-            processes[i].startTime = max(processes[i].arrivalTime, processes[i - 1].endTime); <button class="explain-button" onclick="explainSection('startTimeOther')">Explain</button>
-        }
-        processes[i].waitingTime = processes[i].startTime - processes[i].arrivalTime; <button class="explain-button" onclick="explainSection('waitingTimeCalc')">Explain</button>
-        processes[i].turnaroundTime = processes[i].waitingTime + processes[i].burstTime; <button class="explain-button" onclick="explainSection('turnaroundTimeCalc')">Explain</button>
-        processes[i].endTime = processes[i].startTime + processes[i].burstTime; <button class="explain-button" onclick="explainSection('endTimeCalc')">Explain</button>
+    // Initialize the first process start time and calculate completion time, turnaround time, and waiting time
+    int currentTime = 0; // to track the current time of execution
+    for (int i = 0; i < num Processes; ++i) { <button class="explain-button" onclick="explainSection('forLoopCalc')">Explain</button>
+        int startTime = max(currentTime, processes[i].arrivalTime); <button class="explain-button" onclick="explainSection('startTimeCalc')">Explain</button>
+        processes[i].completionTime = startTime + processes[i].burstTime; <button class="explain-button" onclick="explainSection('completionTimeCalc')">Explain</button>
+        processes[i].turnaroundTime = processes[i].completionTime - processes[i].arrivalTime; <button class="explain-button" onclick="explainSection('turnaroundTimeCalc')">Explain</button>
+        processes[i].waitingTime = processes[i].turnaroundTime - processes[i].burstTime; <button class="explain-button" onclick="explainSection('waitingTimeCalc')">Explain</button>
+
+        currentTime = processes[i].completionTime; <button class="explain-button" onclick="explainSection('updateCurrentTime')">Explain</button>
     }
 
     // Display results in a table format
-    cout << "\nProcess\tArrival Time\tBurst Time\tWaiting Time\tTurnaround Time\tStart Time\tEnd Time\n"; <button class="explain-button" onclick="explainSection('coutTableHeader')">Explain</button>
+    cout << "\nProcess\tArrival Time\tBurst Time\tCompletion Time\tTurnaround Time\tWaiting Time\n"; <button class="explain-button" onclick="explainSection('coutTableHeader')">Explain</button>
     for (const auto& p : processes) { <button class="explain-button" onclick="explainSection('forLoopDisplay')">Explain</button>
         cout << "P" << p.id << "\t\t" <button class="explain-button" onclick="explainSection('coutProcessIdDisplay')">Explain</button>
              << p.arrivalTime << "\t\t" <button class="explain-button" onclick="explainSection('coutArrivalTimeDisplay')">Explain</button>
              << p.burstTime << "\t\t" <button class="explain-button" onclick="explainSection('coutBurstTimeDisplay')">Explain</button>
-             << p.waitingTime << "\t\t" <button class="explain-button" onclick="explainSection('coutWaitingTimeDisplay')">Explain</button>
+             << p.completionTime << "\t\t" <button class="explain-button" onclick="explainSection('coutCompletionTimeDisplay')">Explain</button>
              << p.turnaroundTime << "\t\t" <button class="explain-button" onclick="explainSection('coutTurnaroundTimeDisplay')">Explain</button>
-             << p.startTime << "\t\t" <button class="explain-button" onclick="explainSection('coutStartTimeDisplay')">Explain</button>
-             << p.endTime << "\n"; <button class="explain-button" onclick="explainSection('coutEndTimeDisplay')">Explain</button>
+             << p.waitingTime << "\n"; <button class="explain-button" onclick="explainSection('coutWaitingTimeDisplay')">Explain</button>
     }
 
+    // Calculate average waiting and turnaround times
     double totalWaitingTime = 0, totalTurnaroundTime = 0; <button class="explain-button" onclick="explainSection('totalTimesInit')">Explain</button>
     for (const auto& p : processes) { <button class="explain-button" onclick="explainSection('forLoopTotalTimes')">Explain</button>
         totalWaitingTime += p.waitingTime; <button class="explain-button" onclick="explainSection('totalWaitingTimeCalc')">Explain</button>
@@ -89,14 +86,14 @@ int main() { <button class="explain-button" onclick="explainSection('mainStart')
     cout << "\nAverage Waiting Time: " << fixed << setprecision(2) << totalWaitingTime / numProcesses; <button class="explain-button" onclick="explainSection('coutAvgWaitingTime')">Explain</button>
     cout << "\nAverage Turnaround Time: " << fixed << setprecision(2) << totalTurnaroundTime / numProcesses << "\n"; <button class="explain-button" onclick="explainSection('coutAvgTurnaroundTime')">Explain</button>
 
-    cout << "\ ```html
-\nGantt Chart:\n"; <button class="explain-button" onclick="explainSection('coutGanttChartHeader')">Explain</button>
+    // Gantt Chart (for visualization of process execution)
+    cout << "\nGantt Chart:\n"; <button class="explain-button" onclick="explainSection('coutGanttChartHeader')">Explain</button>
     cout << " "; <button class="explain-button" onclick="explainSection('coutGanttChartSpace')">Explain</button>
     for (const auto& p : processes) { <button class="explain-button" onclick="explainSection('forLoopGanttChart')">Explain</button>
         cout << "-------"; <button class="explain-button" onclick="explainSection('coutGanttChartSeparator')">Explain</button>
     }
     cout << "\n|"; <button class="explain-button" onclick="explainSection('coutGanttChartStart')">Explain</button>
-    for (const auto& p : processes) { <button class="explain-button" onclick="explainSection('forLoopGanttChartIds')">Explain</button>
+    for (const auto& p : processes) { <button class="explain-button" onclick="explainSection('for LoopGanttChartIds')">Explain</button>
         cout << "  P" << p.id << "   |"; <button class="explain-button" onclick="explainSection('coutGanttChartId')">Explain</button>
     }
     cout << "\n "; <button class="explain-button" onclick="explainSection('coutGanttChartSpaceEnd')">Explain</button>
@@ -105,10 +102,13 @@ int main() { <button class="explain-button" onclick="explainSection('mainStart')
     }
     cout << "\n"; <button class="explain-button" onclick="explainSection('coutGanttChartNewline')">Explain</button>
 
+    // Print completion times below the Gantt chart
+    currentTime = 0;  // Reset current time to print the completion times
     for (const auto& p : processes) { <button class="explain-button" onclick="explainSection('forLoopGanttChartTimes')">Explain</button>
-        cout << p.startTime << "\t"; <button class="explain-button" onclick="explainSection('coutGanttChartStartTime')">Explain</button>
+        cout << currentTime << "\t"; <button class="explain-button" onclick="explainSection('coutGanttChartStartTime')">Explain</button>
+        currentTime = p.completionTime; <button class="explain-button" onclick="explainSection('updateCurrentTimeGantt')">Explain</button>
     }
-    cout << processes.back().endTime << endl; <button class="explain-button" onclick="explainSection('coutGanttChartEndTime')">Explain</button>
+    cout << endl;  // Print the final completion time
 
     return 0; <button class="explain-button" onclick="explainSection('return0')">Explain</button>
 }
@@ -117,7 +117,7 @@ int main() { <button class="explain-button" onclick="explainSection('mainStart')
 
         <div class="summary-report">
             <h2>Summary Report</h2>
-            <p>This C++ program is designed to manage and schedule processes based on user input. It collects information about each process, including its arrival time and burst time, and calculates various metrics such as waiting time, turnaround time, and end time. The program then displays this information in a structured format, including a Gantt chart that visually represents the execution order of the processes. This helps users understand how processes are scheduled and managed in a computing environment, making it a valuable educational tool for learning about process scheduling algorithms.</p>
+            <p>This C++ program is designed to manage and schedule processes based on user input. It collects information about each process, including its arrival time and burst time, and calculates various metrics such as completion time, waiting time, and turnaround time. The program then displays this information in a structured format, including a Gantt chart that visually represents the execution order of the processes. This helps users understand how processes are scheduled and managed in a computing environment, making it a valuable educational tool for learning about process scheduling algorithms.</p>
         </div>
 
         <div class="export-section">
